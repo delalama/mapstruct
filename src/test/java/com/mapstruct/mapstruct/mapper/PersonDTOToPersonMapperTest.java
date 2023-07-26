@@ -5,11 +5,7 @@ import com.mapstruct.mapstruct.model.PersonDTO;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class PersonDTOToPersonMapperTest {
@@ -19,17 +15,23 @@ class PersonDTOToPersonMapperTest {
 
     @Test
     public void givenPersonDTOList_whenMapsList_thenCorrect() {
-        PersonDTO personFrom = Instancio.create(PersonDTO.class);
+        List<PersonDTO> personsFrom  = Instancio.ofList(PersonDTO.class).size(2).create();
 
-        List<PersonDTO> personDTOS = Collections.singletonList(personFrom);
-
-        List<Person> personListMapped = mapper.map(personDTOS);
+        List<Person> personListMapped = mapper.map(personsFrom);
 
         for (Person personTo : personListMapped) {
-            assertEquals(personFrom.getName(), personTo.getName());
-            assertEquals(personFrom.getSurname(),
-                    personTo.getSurname());
-        }
+            PersonDTO personToAssert = personsFrom.stream()
+                    .filter(p -> p.getName().equals(personTo.getName()))
+                    .findAny().get();
 
+            assertAll("Verify Person properties",
+                    () -> assertEquals(personToAssert.getName()
+                            , personTo.getName()),
+                    () -> assertEquals(personToAssert.getSurname()
+                            , personTo.getSurname()),
+                    () -> assertEquals(personToAssert.getType()
+                            , personTo.getType())
+            );
+        }
     }
 }

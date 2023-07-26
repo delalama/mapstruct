@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(uses = {Human.class})
+@Mapper
 public interface PersonDTOToPersonMapper {
     List<Person> map(List<PersonDTO> person);
 

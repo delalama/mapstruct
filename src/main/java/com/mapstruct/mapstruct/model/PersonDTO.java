@@ -8,6 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PersonDTO extends Human{
+public class PersonDTO extends Human {
     private PersonType type;
 }
