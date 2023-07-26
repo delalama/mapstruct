@@ -1,6 +1,5 @@
 package com.mapstruct.mapstruct.mapper;
 
-import com.mapstruct.mapstruct.PersonType;
 import com.mapstruct.mapstruct.model.Person;
 import com.mapstruct.mapstruct.model.PersonDTO;
 import org.junit.jupiter.api.Test;

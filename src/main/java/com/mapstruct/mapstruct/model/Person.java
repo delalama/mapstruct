@@ -9,5 +9,4 @@ import lombok.*;
 public class Person extends Human {
     private long id;
     private PersonType type;
-
 }
