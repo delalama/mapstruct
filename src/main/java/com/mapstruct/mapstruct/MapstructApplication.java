@@ -24,6 +24,11 @@ public class MapstructApplication {
 				.getBean("requestMappingHandlerMapping", RequestMappingHandlerMapping.class);
 		Map<RequestMappingInfo, HandlerMethod> map = requestMappingHandlerMapping
 				.getHandlerMethods();
-		map.forEach((key, value) -> System.out.println(key + " - " + value));
+		System.out.println("MAPPINGS");
+		map.forEach((key, value) -> {
+			if(!key.toString().contains("error")) {
+				System.out.println(key + " - " + value.getBean());
+			}
+		});
 	}
 }
