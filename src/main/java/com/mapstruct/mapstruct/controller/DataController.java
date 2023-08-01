@@ -1,6 +1,6 @@
 package com.mapstruct.mapstruct.controller;
 
-import com.mapstruct.mapstruct.model.CompanyDTO;
+import com.mapstruct.mapstruct.model.ScheduleDataDTO;
 import com.mapstruct.mapstruct.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +11,9 @@ public class DataController {
     @Autowired
     DataService dataService;
 
-    @PostMapping("/company")
-    private long saveCompany(@RequestBody CompanyDTO companyDTO) {
-        return  dataService.saveOrUpdate(companyDTO);
+    @PostMapping("/scheduleData")
+    private long saveCompany(@RequestBody ScheduleDataDTO scheduleDataDTO) {
+        return  dataService.saveOrUpdateScheduleData(scheduleDataDTO);
     }
 
 }

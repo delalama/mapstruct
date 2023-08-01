@@ -1,9 +1,9 @@
 package com.mapstruct.mapstruct.repository;
 
-import com.mapstruct.mapstruct.model.Company;
+import com.mapstruct.mapstruct.model.ScheduleData;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CompanyRepository extends CrudRepository<Company, Integer> {
+public interface ScheduleDataRepository extends CrudRepository<ScheduleData, Integer> {
 }
