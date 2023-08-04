@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -29,4 +30,19 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name="scheduleData_id", nullable=false)
     private ScheduleData scheduleData;
+
+    public static List<EmployeeDTO> toDTO(List<Employee> employee) {
+        List<EmployeeDTO> employeeDTOList = new ArrayList<>(employee.size());
+
+        employee.stream().forEach(e -> {
+            EmployeeDTO employeeDTO = new EmployeeDTO();
+            employeeDTO.setName(e.getName());
+            employeeDTO.setFeId(e.getFeId());
+            employeeDTO.setDaysOff(e.getDaysOff());
+
+            employeeDTOList.add(employeeDTO);
+        });
+
+        return employeeDTOList;
+    }
 }

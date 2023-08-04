@@ -10,6 +10,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class ScheduleDataDTO {
+    private Long scheduleDataDTOId;
+    private String companyName;
     private String month;
     private List<EmployeeDTO> employees;
 }

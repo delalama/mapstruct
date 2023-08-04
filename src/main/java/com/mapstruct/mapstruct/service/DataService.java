@@ -19,14 +19,15 @@ public class DataService {
 
     @Autowired
     ScheduleMaker scheduleMaker;
-    public long saveOrUpdateScheduleData(ScheduleDataDTO scheduleDataDTO) {
+
+    public ScheduleDataDTO saveOrUpdateScheduleData(ScheduleDataDTO scheduleDataDTO) {
         ScheduleData scheduleData = getScheduleData(scheduleDataDTO);
 
         ScheduleData saved = dataRepository.save(scheduleData);
 
-        scheduleMaker.generateSchedule(saved);
+//        scheduleMaker.generateSchedule(saved);
 
-        return saved.getId();
+        return saved.toDTO(saved);
     }
 
     private ScheduleData getScheduleData(ScheduleDataDTO scheduleDataDTO) {
@@ -41,16 +42,19 @@ public class DataService {
 
     private List<Employee> mapEmployees(List<EmployeeDTO> employeeDTOList, ScheduleData scheduleData) {
         List<Employee> employees = new ArrayList<>();
-        employeeDTOList.forEach(e -> {
-            Employee employee = new Employee();
-            employee.setId(null);
-            employee.setFeId(e.getFeId());
-            employee.setName(e.getName());
-            employee.setDaysOff(e.getDaysOff());
-            employee.setScheduleData(scheduleData);
+        if (employeeDTOList != null) {
 
-            employees.add(employee);
-        });
+            employeeDTOList.forEach(e -> {
+                Employee employee = new Employee();
+                employee.setId(null);
+                employee.setFeId(e.getFeId());
+                employee.setName(e.getName());
+                employee.setDaysOff(e.getDaysOff());
+                employee.setScheduleData(scheduleData);
+
+                employees.add(employee);
+            });
+        }
         return employees;
     }
 }

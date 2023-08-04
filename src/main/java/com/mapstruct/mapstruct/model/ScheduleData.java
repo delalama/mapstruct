@@ -22,4 +22,17 @@ public class ScheduleData {
 
     @OneToMany(mappedBy="scheduleData", cascade = CascadeType.ALL)
     private List<Employee> employee;
+
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
+    private User user;
+
+    public ScheduleDataDTO toDTO(ScheduleData saved) {
+        ScheduleDataDTO scheduleDataDTO = new ScheduleDataDTO();
+
+        scheduleDataDTO.setEmployees(Employee.toDTO(saved.getEmployee()));
+        scheduleDataDTO.setMonth(saved.getMonthAndYear());
+        scheduleDataDTO.setScheduleDataDTOId(saved.getId());
+        return scheduleDataDTO;
+    }
 }
